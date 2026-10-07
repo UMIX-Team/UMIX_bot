@@ -9,13 +9,16 @@ class Settings(BaseSettings):
     # Telegram
     BOT_TOKEN: str
     OWNER_ID: int
+    WEBHOOK_URL: str
+    WEBHOOK_SECRET: str
+    PORT: int = 8000
 
     # Test defaults
     TARGET_URL: str = "https://rlfleague.ru"
-    MAX_VU: int = 50                  # осторожно для 1 CPU
-    ERROR_RATE_LIMIT: float = 0.02    # 2%
-    LATENCY_P95_LIMIT: int = 1500     # ms
-    LATENCY_P99_LIMIT: int = 3000     # ms
+    MAX_VU: int = 50
+    ERROR_RATE_LIMIT: float = 0.02
+    LATENCY_P95_LIMIT: int = 1500
+    LATENCY_P99_LIMIT: int = 3000
 
 
 settings = Settings()
