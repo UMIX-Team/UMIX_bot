@@ -89,3 +89,18 @@ async def health() -> dict:
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=settings.PORT)
+
+    import subprocess
+
+@router.message(Command("debug"))
+async def cmd_debug(message: Message) -> None:
+    if not _is_owner(message.from_user.id):
+        return
+    await message.answer("⏳ Проверяю...")
+
+    ip = subprocess.run(
+        ["curl", "-s", "ifconfig.me"],
+        capture_output=True, text=True, timeout=5,
+    ).stdout.strip()
+
+    await message.answer(f"🌐 <b>Outbound IP:</b> <code>{ip}</code>", parse_mode="HTML")
