@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  updoUP:
+    build: .
+    container_name: updoUP
+    env_file: .env
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
